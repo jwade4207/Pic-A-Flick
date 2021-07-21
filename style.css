@@ -68,3 +68,9 @@ header nav ul li a:hover {
     border-bottom: 3px solid rgba(100, 60, 160);
     text-shadow: none;
 }
+
+/* hero */
+
+#hero-headline {
+    color: rgba(100, 60, 160);
+}
