@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const userRoutes = require('./user-routes.');
-const genresRoutes = require('./Genres-routes');
-const voteRoutes = require('./vote-routes');
+const apiRoutes = require('./api');
 
-router.use('/users', userRoutes);
-router.use('/genres', genresRoutes);
-router.use('/votes', voteRoutes);
+router.use('/api', apiRoutes);
 
-module.exports = router;
+router.use((req, res) => {
+  res.status(404).end();
+});
+
+module.exports = router; 
