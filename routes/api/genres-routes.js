@@ -10,24 +10,28 @@ router.get('/', (req, res) => {
         attributes: [
             'id',
             
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE genre.id = vote.genre_id)'), 'vote_count']
+            // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE genre.id = vote.genre_id)'), 'vote_count']
         ],
-        order: [['created_at', 'DESC']],
-        include: [
-            // {
-            //     model: Comment,
-            //     attributes: ['id', 'genre_id', 'user_id', ],
-            //     include: {
-            //         model: User,
-            //         attributes: ['username']
-            //     }
-            // },
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
+        // include: [
+        //     // {
+        //     //     model: Comment,
+        //     //     attributes: ['id', 'genre_id', 'user_id', ],
+        //     //     include: {
+        //     //         model: User,
+        //     //         attributes: ['username']
+        //     //     }
+        //     // },
+        //     {
+        //         model: User,
+        //         attributes: ['username']
+        //     }
+        // ]
     })
+    .then(dbGenreData => res.json(dbGenreData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 //route that allows us to create a genre
 router.get('/', (req, res) => {
