@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
               model: Genres,
-              attributes: ['id', 'genre_name', ]
+              attributes: ['id', 'genre_name']
             },
             //{
               //model: Comment,
@@ -60,7 +60,6 @@ router.post('/', (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
     User.create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     })
         .then(dbUserData => res.json(dbUserData))
