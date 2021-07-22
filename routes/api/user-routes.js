@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
               model: Genres,
               attributes: ['genre_name'],
               through: Vote,
-              as: 'voted_posts'
+              as: 'voted_genres'
             }
           ]
     })
@@ -72,14 +72,13 @@ router.post('/', (req, res) => {
 
 router.post('/login', (req, res) => {
     //Query operation
-    // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
     where: {
-      email: req.body.email
+      username: req.body.username
     }
   }).then(dbUserData => {
     if (!dbUserData) {
-      res.status(400).json({ message: 'No user with that email address!' });
+      res.status(400).json({ message: 'No user with that username!' });
       return;
     }
 

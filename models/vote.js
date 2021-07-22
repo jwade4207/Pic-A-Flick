@@ -25,7 +25,7 @@ Vote.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'genre',
+                model: 'genres',
                 key: 'id'
             }
         }
