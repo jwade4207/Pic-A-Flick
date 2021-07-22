@@ -21,26 +21,26 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        include: [
-            {
-              model: Genres,
-              attributes: ['id', 'genre_name']
-            },
-            //{
-              //model: Comment,
-             // attributes: ['id', 'comment_text', 'created_at'],
-              //include: {
-                //model: Post,
-                //attributes: ['title']
-              //}
-            //},
-            {
-              model: Genres,
-              attributes: ['genre_name'],
-              through: Vote,
-              as: 'voted_genres'
-            }
-          ]
+        // include: [
+        //     {
+        //       model: Genres,
+        //       attributes: ['id', 'genre_name']
+        //     },
+        //     //{
+        //       //model: Comment,
+        //      // attributes: ['id', 'comment_text', 'created_at'],
+        //       //include: {
+        //         //model: Post,
+        //         //attributes: ['title']
+        //       //}
+        //     //},
+        //     {
+        //       model: Genres,
+        //       attributes: ['genre_name'],
+        //       through: Vote,
+        //       as: 'voted_genres'
+        //     }
+        //   ]
     })
         .then(dbUserData => {
             if (!dbUserData) {
