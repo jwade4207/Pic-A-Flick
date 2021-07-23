@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     Genres.findAll({
         //query configuration
         attributes: [
-            'id',
+            'id', 'genre_name', 'title'
             
             // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE genre.id = vote.genre_id)'), 'vote_count']
         ],

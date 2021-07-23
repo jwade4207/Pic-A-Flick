@@ -12,9 +12,13 @@ Genres.init(
       primaryKey: true,
       autoIncrement: true
     },
-      genre_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+    genre_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   },
   {
