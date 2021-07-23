@@ -2,13 +2,13 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { User, Vote, Genres } = require('../../models');
 
-//get all users
+//get all votes
 router.get('/', (req, res) => {
     //console.log('============');
     Vote.findAll({
         //query configuration
         attributes: [
-            'id',
+            'id', 'user_id', 'genre_id'
             
             // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE genres.id = vote.genre_id)'), 'vote_count']
         ],
@@ -34,9 +34,9 @@ router.get('/', (req, res) => {
         });
 
 });
-//route that allows us to create a genre
+
+// route that allows us to create a vote
 router.get('/', (req, res) => {
-    // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
    Vote.create({
         title: req.body.title,
         user_id: req.body.user_id
@@ -48,16 +48,16 @@ router.get('/', (req, res) => {
         });
 });
 
-//PUT /api/genre/upvote
-router.put('/upvote', (req, res) => {
-    // custom static method created in models/Genre.js
-    Vote.upvote(req.body, { Vote, User })
-        .then(updatedVoteData => res.json(updatedVoteData))
-        .catch(err => {
-            console.log(err);
-            res.status(400).json(err);
-        });
-});
+// //PUT /api/genre/upvote
+// router.put('/upvote', (req, res) => {
+//     // custom static method created in models/Genre.js
+//     Vote.upvote(req.body, { Vote, User })
+//         .then(updatedVoteData => res.json(updatedVoteData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(400).json(err);
+//         });
+// });
 
 //allows you to update a post's title
 router.put('/:id', (req, res) => {
