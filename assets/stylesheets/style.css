@@ -87,10 +87,14 @@ header nav ul li a:hover {
 
 /* main body */
 
-main h2 {
+.topFive {
     justify-content: center;
     color:rgba(100, 60, 160);
     border-bottom: solid 3px white;
+}
+
+main section div a:hover {
+    border:solid 4px rgba(100, 60, 160);
 }
 
 .movie-boxes {
