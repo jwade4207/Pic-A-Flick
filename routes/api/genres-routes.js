@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const {Genres, User, Vote} = require('../../models');
+const { User, Movies, Vote } = require('../../models');
 
 //get all genres
 router.get('/', (req, res) => {
@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     Genres.findAll({
         //query configuration
         attributes: [
-            'id',
+            'id', 'genre_name'
             
             // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE genre.id = vote.genre_id)'), 'vote_count']
         ],

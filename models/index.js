@@ -2,7 +2,7 @@
 const User = require('./User');
 //imports vote model from ./Vote file in models directory
 const Vote = require('./Vote');
-//const Comment = require('./Comment');
+const Movies = require('./Movies');
 const Genres = require('./Genres');
 
 //create model associations between models User and Post (this is a one-to-many relationship) This association creates the reference for the id column in the User model to link to the corresponding foreign key pair, which is the user_id in the Post model.
@@ -65,4 +65,4 @@ Genres.hasMany(Vote, {
     //foreignKey: 'genre_id'
 //});
 
-module.exports = { User, Genres, Vote };
+module.exports = { User, Movies, Vote };
