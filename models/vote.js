@@ -20,12 +20,11 @@ Vote.init(
                 key: 'id'
             }
         },
-        //same as above, relates Vote model data to Post model
         genre_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'genres',
+                model: 'movies',
                 key: 'id'
             }
         }

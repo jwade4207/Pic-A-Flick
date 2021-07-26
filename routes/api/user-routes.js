@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         },
         // include: [
         //     {
-        //       model: Genres,
+        //       model: 
         //       attributes: ['id', 'genre_name']
         //     },
         //     //{

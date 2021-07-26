@@ -37,16 +37,16 @@ Vote.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Vote.belongsTo(Genres, {
-    foreignKey: 'genre_id'
+Vote.belongsTo(Movies, {
+    foreignKey: 'title'
 });
 
 User.hasMany(Vote, {
     foreignKey: 'user_id'
 });
 
-Genres.hasMany(Vote, {
-    foreignKey: 'genre_id'
+Movies.hasMany(Vote, {
+    foreignKey: 'title'
 });
 
 //Comment.belongsTo(User, {

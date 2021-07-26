@@ -59,11 +59,12 @@ router.put('/upvote', (req, res) => {
         });
 });
 
-//allows you to update a post's title
+//allows you to update a votte
 router.put('/:id', (req, res) => {
     Vote.update(
         {
-            title: req.body.title
+            user_id: req.body.user_id,
+            genre_id: req.body.genre_id
         },
         {
             where: {
@@ -72,7 +73,7 @@ router.put('/:id', (req, res) => {
         })
         .then(dbVoteData => {
             if (!dbVoteData) {
-                res.status(404).json({ message: 'No genre found with this id' });
+                res.status(404).json({ message: 'No vote found with this id' });
                 return;
             }
             res.json(dbVoteData);
@@ -83,7 +84,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-//route to delete a genre
+//route to delete a vote
 router.delete('/:id', (req, res) => {
     Vote.destroy({
         where: {
@@ -92,7 +93,7 @@ router.delete('/:id', (req, res) => {
     })
         .then(dbVoteData => {
             if (!dbVoteData) {
-                res.status(404).json({ message: 'No genre found with this id' });
+                res.status(404).json({ message: 'No vote found with this id' });
                 return;
             }
             res.json(dbVoteData);
