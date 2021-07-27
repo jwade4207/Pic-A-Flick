@@ -34,4 +34,24 @@ router.get('/', (req, res) => {
           });
       });
 
+      // render the login page, redirect to homepage if user is logged in
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+  // render the sign up page
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
+});
+
     module.exports = router;
