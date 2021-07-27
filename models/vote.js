@@ -20,7 +20,7 @@ Vote.init(
                 key: 'id'
             }
         },
-        genre_id: {
+        movie_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
