@@ -22,14 +22,7 @@
             <a href="/">Pic A Flick</a>
         </h1>
             <nav>
-                {{#if loggedIn}}
-          	<a href="/dashboard">Dashboard</a>
-          	<button id="logout" class="btn-no-style">Logout</button>
-          	{{else}}
-          	<a href="/login">Login</a>
-          	{{/if}}
-            </nav>
-        <nav>
+    
             <ul>
                 <li>
                     <a href="/views/comedy.handlebars">Comedy</a>
@@ -47,6 +40,18 @@
                     <a href="./htmls/superHero.html">Super Hero</a>
                 </li>
             </ul>
+            <ul>
+            {{#if loggedIn}}
+          	<li><a href="/dashboard">Dashboard</a>
+              </li>
+          	<li><button id="logout" class="btn-no-style">Logout</button>
+              </li>
+          	{{else}}
+          	<li><a href="/login">Login</a>
+          	{{/if}}
+              </li>
+            </ul>
+
         </nav>
     </header>
         <main>
