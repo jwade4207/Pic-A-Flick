@@ -1,5 +1,8 @@
 const router = require('express').Router();
-const { User, Genres, Vote } = require('../../models');
+const { User, Movies } = require('../../models');
+const session = require('express-session');
+const withAuth = require('../../utils/auth');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -21,26 +24,12 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        // include: [
-        //     {
-        //       model: Genres,
-        //       attributes: ['id', 'genre_name']
-        //     },
-        //     //{
-        //       //model: Comment,
-        //      // attributes: ['id', 'comment_text', 'created_at'],
-        //       //include: {
-        //         //model: Post,
-        //         //attributes: ['title']
-        //       //}
-        //     //},
-        //     {
-        //       model: Genres,
-        //       attributes: ['genre_name'],
-        //       through: Vote,
-        //       as: 'voted_genres'
-        //     }
-        //   ]
+        include: [
+            {
+                model: Movies,
+                attributes: ['id', 'title', 'genre_name', 'user_id']
+            }
+        ]
     })
         .then(dbUserData => {
             if (!dbUserData) {
@@ -57,17 +46,25 @@ router.get('/:id', (req, res) => {
 
 // POST /api/users creates new user
 router.post('/', (req, res) => {
-    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
     User.create({
-        username: req.body.username,
-        password: req.body.password
+      username: req.body.username,
+      password: req.body.password
     })
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
+      // send the user data back to the client as confirmation and save the session
+      .then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+      
+          res.json(dbUserData);
         });
-});
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 router.post('/login', (req, res) => {
     //Query operation
@@ -81,20 +78,38 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    // Verify user
+    // verify user
     const validPassword = dbUserData.checkPassword(req.body.password);
     if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
-      }
-      
+    }
+    // otherwise, save the session, and return the user object and a success message
+    req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
       res.json({ user: dbUserData, message: 'You are now logged in!' });
-  });  
+    });
+});  
 });
+// POST /api/users/logout -- log out an existing user
+router.post('/logout', withAuth, (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        // 204 status is that a request has succeeded, but client does not need to go to a different page
+        res.status(204).end();
+      });
+    } else {
+      // if there is no session, then the logout request will send back a no resource found status
+      res.status(404).end();
+    }
+  })
 
 // PUT /api/users/1
-router.put('/:id', (req, res) => {
-    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
+router.put('/:id', withAuth, (req, res) => {
 
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
@@ -117,7 +132,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE /api/users/1
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
         where: {
           id: req.params.id

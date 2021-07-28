@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="icon" type="image/favicon" href="/images/paf-favicon.ico">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Pic-A-Flick</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+
+    <!-- navigation tags -->
+
+    <header>
+        <h1>
+            <a href="/">Pic A Flick</a>
+        </h1>
+            <nav>
+    
+            <ul>
+                <li>
+                    <a href="/views/comedy.handlebars">Comedy</a>
+                </li>
+                <li>
+                    <a href="./htmls/guiltyPleasures.html">Guilty Pleasures</a>
+                </li>
+                <li>
+                    <a href="./htmls/horror.html">Horror</a>
+                </li>
+                <li>
+                    <a href="./htmls/scifi.html">SciFi</a>
+                </li>
+                <li>
+                    <a href="./htmls/superHero.html">Super Hero</a>
+                </li>
+            </ul>
+            <ul>
+            {{#if loggedIn}}
+          	<li><a href="/dashboard">Dashboard</a>
+              </li>
+          	<li><button id="logout" class="btn-no-style">Logout</button>
+              </li>
+          	{{else}}
+          	<li><a href="/login">Login</a>
+          	{{/if}}
+              </li>
+            </ul>
+
+        </nav>
+    </header>
+        <main>
+            {{{ body }}}
+        </main>
+        <footer>
+            You're Welcome
+        </footer>
+    </div>
+
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
+
+</body>
+
+</html>
