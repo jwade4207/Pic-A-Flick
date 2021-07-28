@@ -38,6 +38,11 @@ router.get('/', (req, res) => {
   });
 
   router.get('/login', (request, response) => {
+      if (req.session.loggedIn) {
+          res.redirect('/');
+          return;
+      }
+      
       res.render('login');
   });
 
