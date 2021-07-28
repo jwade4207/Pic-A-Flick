@@ -7,35 +7,55 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="icon" type="image/favicon" href="./assets/images/paf-favicon.ico">
-    <link rel="stylesheet" href="../../assets/stylesheets/style.css" />
+    <link rel="icon" type="image/favicon" href="/assets/images/paf-favicon.ico">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css" />
     <title>Pic-A-Flick</title>
-    
 </head>
-
 <body>
-  <div class="wrapper">
+    <div class="wrapper">
+        <header>
+
+    <!-- navigation tags -->
+
     <header>
-      <h1>
-        Pic-a-Flick
-      </h1>
+        <h1>
+            <a href="/">Pic A Flick</a>
+        </h1>
+            <nav>
+                {{#if loggedIn}}
+          	<a href="/dashboard">Dashboard</a>
+          	<button id="logout" class="btn-no-style">Logout</button>
+          	{{else}}
+          	<a href="/login">Login</a>
+          	{{/if}}
+            </nav>
         <nav>
-          <a href="/">Home</a>
-          {{#if loggedIn}}
-          <a href="/dashboard">Dashboard</a>
-          <button id="logout" class="btn-no-style">Logout</button>
-          {{else}}
-          <a href="/login">Login</a>
-          {{/if}}
+            <ul>
+                <li>
+                    <a href="./assets/htmls/comedy.html">Comedy</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/guiltyPleasures.html">Guilty Pleasures</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/horror.html">Horror</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/scifi.html">SciFi</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/superHero.html">Super Hero</a>
+                </li>
+            </ul>
         </nav>
     </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
-  </div>
+        <main>
+            {{{ body }}}
+        </main>
+        <footer>
+            You're Welcome
+        </footer>
+    </div>
 
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
