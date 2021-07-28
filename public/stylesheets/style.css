@@ -5,7 +5,8 @@
 }
 
 body {
-    
+    background-color: black;
+    color: grey;
 }
 
 /* nav bar */
@@ -84,6 +85,11 @@ header nav ul li a:hover {
 .btn-no-style:hover {
         text-decoration: none;
         color: white;
+}
+
+button {
+    padding: 2px;
+    background-color: grey;
 }
 
 /* hero */
