@@ -2,11 +2,6 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-<<<<<<< HEAD
-=======
-const hbs = exphbs.create({});
-
->>>>>>> 1f3d8d202901920bdce49463c9dd2b47a393ab35
 
 const app = express();
 const PORT = process.env.PORT || 3001;
