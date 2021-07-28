@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="icon" type="image/favicon" href="./assets/images/paf-favicon.ico">
+    <link rel="stylesheet" href="./assets/stylesheets/style.css" />
+    <title>Pic-A-Flick</title>
+    
+</head>
+<body class="bg-dark min-100-vh">
+
+    <!-- navigation tags -->
+
+    <header>
+        <h1>
+            <a href="/">Pic A Flick</a>
+        </h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="./assets/htmls/comedy.html">Comedy</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/guiltyPleasures.html">Guilty Pleasures</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/horror.html">Horror</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/scifi.html">SciFi</a>
+                </li>
+                <li>
+                    <a href="./assets/htmls/superHero.html">Super Hero</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- hero section -->
+
+    <section class="hero row no-gutters bg-light">
+        <div class="col-2">
+
+        </div>
+        <div class="col-4 text-center">
+            <h3 id="hero-headline">Very Important Words</h3>
+            <p id="hero-textblock">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi suscipit, facilis corrupti ab porro perferendis deleniti ipsa saepe ad neque velit adipisci quibusdam laboriosam tempore sit id repellendus vel dolores.</p>
+        </div>
+        <div class="col-2">
+
+        </div>
+        <div class="col-4">
+            <img src="assets/images/Logo.png">
+        </div>
+    </section>
+
+    <!-- 5 genres -->
+    <main id="main-content">
+        <section class="genres row bk-dark" id="comedy">
+            <div class="col-12 movie-boxes text-center" id="comedy-movies">
+                <h2 class="col-12 topFive">Top 5 Comedies</h2>
+                <a href="https://en.wikipedia.org/wiki/Anchorman:_The_Legend_of_Ron_Burgundy" target="_blank">
+                    <img class="comedy-imgs" src="assets/images/comedies/anchorman.jpg">
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Coming_to_America" target="_blank">
+                    <img class="comedy-imgs" src="assets/images/comedies/coming-to-america.jpg">
+                </a>
+                <a href="https://en.wikipedia.org/wiki/I%27m_Gonna_Git_You_Sucka" target="_blank">
+                    <img class="comedy-imgs" src="assets/images/comedies/get-you-sucka.jpg">
+                </a>
+                <a href="https://en.wikipedia.org/wiki/O_Brother,_Where_Art_Thou%3F" target="_blank">
+                    <img class="comedy-imgs" src="assets/images/comedies/o-brother.jpg">
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Scary_Movie" target="_blank">
+                    <img class="comedy-imgs" src="assets/images/comedies/scary-movie.jpg">
+                </a>
+            </div>
+        </section>
+
+        <section class="genres row bk-dark" id="guilty">
+            <div class="col-12 movie-boxes text-center" id="guilty-movies">
+                <h2 class="col-12 topFive">Top 5 Guilty Pleasures</h2>
+                <img class="guilty-imgs" src="assets/images/guilty-pleasures/walk-to-remember.jpg">
+                <img class="guilty-imgs" src="assets/images/guilty-pleasures/euro-trip.jpg">
+                <img class="guilty-imgs" src="assets/images/guilty-pleasures/shes-all-that.jpg">
+                <img class="guilty-imgs" src="assets/images/guilty-pleasures/step-up.jpg">
+                <img class="guilty-imgs" src="assets/images/guilty-pleasures/titanic.png">
+            </div>
+        </section>
+
+        <section class="genres row bk-dark" id="horror">
+            <div class="col-12 movie-boxes text-center" id="horror-movies">
+                <h2 class="col-12 topFive">Top 5 Horror Movies</h2>
+                <img class="horror-imgs" src="assets/images/horror/friday.jpg">
+                <img class="horror-imgs" src="assets/images/horror/cabin.jpg">
+                <img class="horror-imgs" src="assets/images/horror/conjuring.jpg">
+                <img class="horror-imgs" src="assets/images/horror/nightmare.jpg">
+                <img class="horror-imgs" src="assets/images/horror/pet-sematary.png">
+            </div>
+        </section>
+
+        <section class="genres row bk-dark" id="scifi">
+            <div class="col-12 movie-boxes text-center" id="scifi-movies">
+                <h2 class="col-12 topFive">Top 5 SciFi Movies</h2>
+                <img class="scifi-imgs" src="assets/images/scifi/alien.jpg">
+                <img class="scifi-imgs" src="assets/images/scifi/empire-strikes-back.jpg">
+                <img class="scifi-imgs" src="assets/images/scifi/et.jpg">
+                <img class="scifi-imgs" src="assets/images/scifi/men-in-black.jpg">
+                <img class="scifi-imgs" src="assets/images/scifi/predator.jpg">
+            </div>
+        </section>
+
+        <section class="genres row bk-dark" id="super-hero">
+            <div class="col-12 movie-boxes text-center" id="super-hero-movies">
+                <h2 class="col-12 topFive">Top 5 Super Hero Movies</h2>
+                <img class="super-hero-imgs" src="assets/images/super-hero/black-panther.jpg">
+                <img class="super-hero-imgs" src="assets/images/super-hero/dark-knight.jpg">
+                <img class="super-hero-imgs" src="assets/images/super-hero/iron-man.jpg">
+                <img class="super-hero-imgs" src="assets/images/super-hero/spiderman.png">
+                <img class="super-hero-imgs" src="assets/images/super-hero/superman.jpg">
+            </div>
+        </section>
+    </main>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
