@@ -21,8 +21,13 @@ router.get('/', (req, res) => {
     })
         // render the movies
         .then(dbMoviesData => {
+<<<<<<< HEAD
             const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
             // pass the movies into the homepage template
+=======
+            // create an array for the movies, using the get method to trim extra sequelize object data out
+            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+>>>>>>> d813b582b2a6c4b9df94ab5c5d92faa9ae69eba1
             res.render('homepage', {
               movies,
               loggedIn: req.session.loggedIn
@@ -34,7 +39,11 @@ router.get('/', (req, res) => {
           });
       });
 
+<<<<<<< HEAD
       // render the single movie page
+=======
+       // render the single movie page
+>>>>>>> d813b582b2a6c4b9df94ab5c5d92faa9ae69eba1
 router.get('/movie/:id', (req, res) => {
   Movies.findOne({
     where: {
