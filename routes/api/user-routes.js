@@ -92,11 +92,12 @@ router.post('/login', (req, res) => {
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });
-    });
-});  
+      });
+  });  
 });
-// POST /api/users/logout -- log out an existing user
-router.post('/logout', withAuth, (req, res) => {
+
+// POST /api/users/logout -- log out an existing user *** add withAuth
+router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {
         // 204 status is that a request has succeeded, but client does not need to go to a different page
@@ -108,8 +109,8 @@ router.post('/logout', withAuth, (req, res) => {
     }
   })
 
-// PUT /api/users/1
-router.put('/:id', withAuth, (req, res) => {
+// PUT /api/users/1 *** add withAuth
+router.put('/:id', (req, res) => {
 
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
@@ -131,8 +132,8 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
-// DELETE /api/users/1
-router.delete('/:id', withAuth, (req, res) => {
+// DELETE /api/users/1 *** add withAuth
+router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
           id: req.params.id

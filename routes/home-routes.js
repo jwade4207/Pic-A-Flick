@@ -20,11 +20,10 @@ router.get('/', (req, res) => {
     })
         // render the movies
         .then(dbMoviesData => {
-            // create an array for the posts, using the get method to trim extra sequelize object data out
-            const posts = dbMoviesData.map(movies => movies.get({ plain: true }));
-            // pass the posts into the homepage template
+            // create an array for the movies, using the get method to trim extra sequelize object data out
+            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
             res.render('homepage', {
-              posts,
+              movies,
               loggedIn: req.session.loggedIn
             });
           })
@@ -33,6 +32,44 @@ router.get('/', (req, res) => {
               res.status(500).json(err);
           });
       });
+
+       // render the single movie page
+router.get('/movie/:id', (req, res) => {
+  Movies.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'title',
+      'genre_name',
+      'user_id',
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      },
+    ]
+  })
+    .then(dbMoviesData => {
+      if (!dbMoviesData) {
+        res.status(404).json({ message: 'No movie found with this id' });
+        return;
+      }
+      // serialize the movie data, removing extra sequelize meta data
+      const movie = dbMovieData.get({ plain: true });
+      // pass the movies and a session variable into the single movie template
+      res.render('single-movie', {
+          movie,
+          loggedIn: req.session.loggedIn
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
       // render the login page, redirect to homepage if user is logged in
 router.get('/login', (req, res) => {
