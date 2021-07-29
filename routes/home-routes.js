@@ -15,7 +15,8 @@ router.get('/', (req, res) => {
         include: [
             {
                 model: User,
-                attributes: ['username']
+                attributes: ['username'],
+                loggedIn: req.session.loggedIn = true
             }
         ]
     })
@@ -32,38 +33,38 @@ router.get('/', (req, res) => {
               console.log(err);
               res.status(500).json(err);
           });
-      });
+});
 
-// // render comedy page
-// router.get('/', (req, res) => {
-//   Movies.findAll({
-//       attributes: [
-//           'id',
-//           'title',
-//           'genre_name',
-//           'user_id'
-//         ],
-//       // order: [[ 'created_at', 'DESC']],
-//       include: [
-//           {
-//               model: User,
-//               attributes: ['username']
-//           }
-//       ]
-//   })
-//       // render the movies
-//       .then(dbMoviesData => {
-//           const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
-//           // pass the movies into the homepage template
-//           res.render('comedy')
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-//     });
+  // render comedy page
+router.get('/comedy', (req, res) => {
+  Movies.findAll({
+      attributes: [
+          'id',
+          'title',
+          'genre_name',
+          'user_id'
+        ],
+      // order: [[ 'created_at', 'DESC']],
+      include: [
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+  })
+      // render the movies
+      .then(dbMoviesData => {
+          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+          // pass the movies into the homepage template
+          res.render('comedy')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 
-      // render the single movie page
+  // render the single movie page
 router.get('/movie/:id', (req, res) => {
   Movies.findOne({
     where: {
