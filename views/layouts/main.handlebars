@@ -39,16 +39,18 @@
                 <li>
                     <a href="./htmls/superHero.html">Super Hero</a>
                 </li>
-                {{#if loggedIn}}
-                <li><a href="/dashboard">Dashboard</a>
-                </li>
-          	    <li><button id="logout" class="btn-no-style">Logout</button>
-                </li>
-            	{{else}}
-          	    <li><a href="/login">Login</a>
-          	    {{/if}}
-                </li>
-                </ul>
+            </ul>
+            <ul>
+            {{#if loggedIn}}
+          	<li><a href="/dashboard">Dashboard</a>
+              </li>
+          	<li><button id="logout" class="btn-no-style">Logout</button>
+              </li>
+          	{{else}}
+          	<li><a href="/login">Login</a>
+          	{{/if}}
+              </li>
+            </ul>
 
         </nav>
     </header>
