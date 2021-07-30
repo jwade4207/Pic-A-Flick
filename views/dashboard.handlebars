@@ -9,7 +9,7 @@
       </div>
       <div>
         <label for="movie-genre">Genre:</label>
-        <textarea id="genre-text" name="genre-text"></textarea>
+        <textarea id="genre-name" name="genre-name"></textarea>
       </div>
       <button type="submit" class="btn">Create</button>
     </form>
@@ -27,7 +27,7 @@
     {{#each movies as |movie|}}
     <li>
       {{> movie-info movie}}
-      <a href="/dashboard/edit/{{movie.id}}" class="edit-link"> &nbsp; &nbsp; &nbsp; Edit Movie</a>
+      <a href="/dashboard/edit/{{movies.id}}" class="edit-link">Edit Movie</a>
     </li>
     {{/each}}
   </ol>

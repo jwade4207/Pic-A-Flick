@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
             {
                 model: User,
                 attributes: ['username'],
-                loggedIn: req.session.loggedIn = true
+                // loggedIn: req.session.loggedIn = true
             }
         ]
     })
