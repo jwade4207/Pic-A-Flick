@@ -64,6 +64,122 @@ router.get('/comedy', (req, res) => {
         });
 });
 
+  // render guiltyPleasures page
+  router.get('/guiltyPleasures', (req, res) => {
+    Movies.findAll({
+        attributes: [
+            'id',
+            'title',
+            'genre_name',
+            'user_id'
+          ],
+        // order: [[ 'created_at', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        // render the movies
+        .then(dbMoviesData => {
+            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+            // pass the movies into the homepage template
+            res.render('guiltyPleasures')
+          })
+          .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+          });
+  });
+
+    // render horror page
+router.get('/horror', (req, res) => {
+  Movies.findAll({
+      attributes: [
+          'id',
+          'title',
+          'genre_name',
+          'user_id'
+        ],
+      // order: [[ 'created_at', 'DESC']],
+      include: [
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+  })
+      // render the movies
+      .then(dbMoviesData => {
+          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+          // pass the movies into the homepage template
+          res.render('horror')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+  // render sciFi page
+  router.get('/sciFi', (req, res) => {
+    Movies.findAll({
+        attributes: [
+            'id',
+            'title',
+            'genre_name',
+            'user_id'
+          ],
+        // order: [[ 'created_at', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        // render the movies
+        .then(dbMoviesData => {
+            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+            // pass the movies into the homepage template
+            res.render('sciFi')
+          })
+          .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+          });
+  });
+
+    // render superHero page
+router.get('/superHero', (req, res) => {
+  Movies.findAll({
+      attributes: [
+          'id',
+          'title',
+          'genre_name',
+          'user_id'
+        ],
+      // order: [[ 'created_at', 'DESC']],
+      include: [
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+  })
+      // render the movies
+      .then(dbMoviesData => {
+          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+          // pass the movies into the homepage template
+          res.render('superHero')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
   // render the single movie page
 router.get('/movie/:id', (req, res) => {
   Movies.findOne({
