@@ -238,14 +238,4 @@ router.get('/movie/:id', (req, res) => {
     res.render('signup');
   });
 
-  // render dashboard page
-  // router.get('/views/dashboard', (req, res) => {
-  //   if (!req.session.loggedIn) {
-  //     res.redirect('/');
-  //     return;
-  //   }
-  
-  //   res.render('/views/dashboard');
-  // });
-
     module.exports = router;

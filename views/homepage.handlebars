@@ -120,6 +120,14 @@
                 <a href="https://en.wikipedia.org/wiki/Superman_(1978_film)" target="_blank">
                     <img class="super-hero-imgs" src="/images/super-hero/superman.jpg">
                 </a>
+
+                <ul class="movie-list">
+                {{#each movies as |movie|}}
+                <li>
+                {{> movie-info movie }}
+                </li>
+                {{/each}}
+                </ul>
             </div>
         </section>
     </main>
