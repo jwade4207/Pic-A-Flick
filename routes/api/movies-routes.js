@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Movies, User } = require('../../models');
+const { Movies, User, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // get all movies
@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
             'title', 
             'genre_name',
             'user_id',
-            'created_at'
+            'created_at',
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE movie.id = vote.movie_id)'), 'vote_count']
         ],
         order: [[ 'created_at', 'DESC']],
         include: [
@@ -40,7 +41,8 @@ router.get('/:id', (req, res) => {
       'title', 
       'genre_name',
       'user_id',
-      'created_at'
+      'created_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE movie.id = vote.movie_id)'), 'vote_count']
   ],
     include: [
       {
@@ -74,6 +76,38 @@ router.post('/', withAuth, (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+// PUT /api/movies/vote
+router.put('/vote', (req, res) => {
+  // create vote
+  Vote.create({
+    user_id: req.body.user_id,
+    movie_id: req.body.movie_id
+  })
+  .then(() => {
+    // then find movie voted on
+    return Movie.findOne({
+      where: {
+        id: req.body.movie_id
+      },
+      attributes: [
+        'id',
+        'movie_url',
+        'title',
+        'created_at'
+        [
+          sequelize.literal('(SELECT COUNT(*) FROM vote WHERE movie.id = vote.post_id)'),
+          'vote_count'
+        ]
+      ]
+    })
+    .then(dbMoviesData => res.json(dbMoviesData))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+  })
 });
 
 // delete a movie **ADD withAuth

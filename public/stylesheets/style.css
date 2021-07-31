@@ -129,6 +129,13 @@ main section div a:hover {
     background-color: rgba(0, 0, 0);
 }
 
+.movie-sections {
+    margin-bottom: 5px;
+    border-bottom: 3px solid white;
+}
+
+/* login and signup */
+
 .login-form, .signup-form {
     margin: 20px;
     padding: 20px;

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Movies } = require('../../models');
+const { User, Movies, Vote } = require('../../models');
 const session = require('express-session');
 const withAuth = require('../../utils/auth');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -28,6 +28,12 @@ router.get('/:id', (req, res) => {
             {
                 model: Movies,
                 attributes: ['id', 'title', 'genre_name', 'user_id']
+            },
+            {
+              model: Movies,
+              attributes: ['title'],
+              through: Vote,
+              as: 'voted_movies'
             }
         ]
     })

@@ -8,6 +8,7 @@ const moviesRoutes = require('./movies-routes');
 router.use('/users', userRoutes);
 // router.use('/genres', genresRoutes);
 router.use('/movies', moviesRoutes);
-// router.use('/votes', voteRoutes);
+router.use('/vote', voteRoutes);
+
 
 module.exports = router;
