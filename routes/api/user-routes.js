@@ -84,6 +84,7 @@ router.post('/login', (req, res) => {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
     }
+
     // otherwise, save the session, and return the user object and a success message
     req.session.save(() => {
       // declare session variables
@@ -93,8 +94,9 @@ router.post('/login', (req, res) => {
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
-});  
+  });  
 });
+
 // POST /api/users/logout -- log out an existing user
 router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {

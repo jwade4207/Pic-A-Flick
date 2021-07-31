@@ -218,34 +218,34 @@ router.get('/movie/:id', (req, res) => {
     });
 });
 
-      // render the login page, redirect to homepage if user is logged in
-router.get('/login', (req, res) => {
+  // render the login page, redirect to homepage if user is logged in
+  router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-      res.render('/login');
+      res.redirect('/');
       return;
     }
-  
-    res.render('/login');
-  });
+      
+        res.render('login');
+      });
 
   // render the sign up page
-router.get('/views/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('/views/signup');
-});
-
-  // render dashboard page
-  router.get('/views/dashboard', (req, res) => {
-    if (!req.session.loggedIn) {
+  router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
       res.redirect('/');
       return;
     }
   
-    res.render('/views/dashboard');
+    res.render('signup');
   });
+
+  // render dashboard page
+  // router.get('/views/dashboard', (req, res) => {
+  //   if (!req.session.loggedIn) {
+  //     res.redirect('/');
+  //     return;
+  //   }
+  
+  //   res.render('/views/dashboard');
+  // });
 
     module.exports = router;

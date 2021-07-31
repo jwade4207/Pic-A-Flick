@@ -129,6 +129,29 @@ main section div a:hover {
     background-color: rgba(0, 0, 0);
 }
 
+.login-form, .signup-form {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.row {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column {
+    margin: 10px;
+    padding: 10px;
+}
+
+input {
+    background-color: lightgray;
+}
+
 footer {
     display: flex;
     justify-content: center;
