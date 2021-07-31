@@ -1,0 +1,12 @@
+<article class="movie">
+  <div class="title">
+    <a> {{movies.title}} </a>
+    <span>({{movies.genre_name}})</span>
+  </div>
+  <div class="meta">
+    {{movies.vote_count}} point(s) by {{movies.user.username}} on
+    {{movies.created_at}}
+    |
+    <!-- <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a> -->
+  </div>
+</article>

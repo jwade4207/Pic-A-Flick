@@ -106,3 +106,14 @@ main section div a:hover {
     background-color: rgba(0, 0, 0);
 }
 
+/* genre pages */
+
+.movie-titles {
+    color:rgba(100, 60, 160);
+    border-bottom: none;
+};
+
+.movie-descriptions {
+    color: white;
+    border-bottom: none;
+}
