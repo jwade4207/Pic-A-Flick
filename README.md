@@ -26,9 +26,9 @@ Enter `npm install` in the terminal to install the necessary dependencies.
 - Enter `http://localhost:3001/` in the address bar to use application.
 
 ## Contributing
-### Charity Rogers
-### Jerod Wade
-### Michael Pinkston
+#### Charity Rogers
+#### Jerod Wade
+#### Michael Pinkston
 
 ## Questions
 If you have any questions or concerns, please contact us!
