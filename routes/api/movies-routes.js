@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Movies, User } = require('../../models');
+const { Movies, User, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // get all movies
@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
             'title', 
             'genre_name',
             'user_id',
-            'created_at'
+            'created_at',
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE movie.id = vote.movie_id)'), 'vote_count']
         ],
         order: [[ 'created_at', 'DESC']],
         include: [
@@ -40,7 +41,8 @@ router.get('/:id', (req, res) => {
       'title', 
       'genre_name',
       'user_id',
-      'created_at'
+      'created_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE movie.id = vote.movie_id)'), 'vote_count']
   ],
     include: [
       {
