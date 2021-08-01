@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
+// const scrypt = require('scrypt');
 const sequelize = require('../config/connection');
 
 // create our User model
@@ -52,7 +53,6 @@ User.init(
                 return updatedUserData;
             }
         },
-        // TABLE CONFIGURATION OPTIONS GO HERE (https://sequelize.org/v5/manual/models-definition.html#configuration))
 
         // pass in our imported sequelize connection (the direct connection to our database)
         sequelize,

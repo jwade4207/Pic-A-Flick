@@ -71,7 +71,7 @@ header nav ul li a:hover {
     text-shadow: none;
 }
 
-.btn-no-style {
+.btn, .btn-no-style {
     text-decoration: none;
     color: rgba(100, 60, 160);
     background-color: transparent;
@@ -82,7 +82,7 @@ header nav ul li a:hover {
     text-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
 
-.btn-no-style:hover {
+.btn:hover, .btn-no-style:hover {
         text-decoration: none;
         color: white;
 }
@@ -147,12 +147,22 @@ main section div a:hover {
     margin: 20px;
     padding: 20px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .column {
     margin: 10px;
     padding: 10px;
+}
+
+.movie-list {
+    margin: 10px;
+    padding: 10px;
+    list-style: none;
+}
+
+.card {
+    background-color: black;
 }
 
 input {
