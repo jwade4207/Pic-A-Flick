@@ -22,8 +22,8 @@ router.get('/', (req, res) => {
     })
         // render the movies
         .then(dbMoviesData => {
+            // create an array for the movies, using the get method to trim extra sequelize object data out
             const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
-            // pass the movies into the homepage template
             res.render('homepage', {
               movies,
               loggedIn: req.session.loggedIn
@@ -122,65 +122,7 @@ router.get('/horror', (req, res) => {
         });
 });
 
-  // render sciFi page
-  router.get('/sciFi', (req, res) => {
-    Movies.findAll({
-        attributes: [
-            'id',
-            'title',
-            'genre_name',
-            'user_id'
-          ],
-        // order: [[ 'created_at', 'DESC']],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
-        // render the movies
-        .then(dbMoviesData => {
-            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
-            // pass the movies into the homepage template
-            res.render('sciFi')
-          })
-          .catch(err => {
-              console.log(err);
-              res.status(500).json(err);
-          });
-  });
-
-    // render superHero page
-router.get('/superHero', (req, res) => {
-  Movies.findAll({
-      attributes: [
-          'id',
-          'title',
-          'genre_name',
-          'user_id'
-        ],
-      // order: [[ 'created_at', 'DESC']],
-      include: [
-          {
-              model: User,
-              attributes: ['username']
-          }
-      ]
-  })
-      // render the movies
-      .then(dbMoviesData => {
-          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
-          // pass the movies into the homepage template
-          res.render('superHero')
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-  // render the single movie page
+       // render the single movie page
 router.get('/movie/:id', (req, res) => {
   Movies.findOne({
     where: {

@@ -22,6 +22,6 @@ async function newFormHandler(event) {
       alert(response.statusText);
     }
   }
-  
+
   // event Listener for the new post submit button
-  document.querySelector('.new-movie-form').addEventListener('submit', newFormHandler);
+  document.querySelector('.new-movie-form').addEventListener('submit', newFormHandler); 

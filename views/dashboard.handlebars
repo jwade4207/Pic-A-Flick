@@ -26,12 +26,21 @@
   <ol>
     {{#each movies as |movie|}}
     <li>
+<<<<<<< HEAD
       {{> movie-info movie}}
       <a href="/dashboard/edit/{{movies.id}}" class="edit-link">Edit Movie</a>
+=======
+      {{> movie-info movies}}
+      <a href="/dashboard/edit/{{movie.id}}" class="edit-link"> &nbsp; &nbsp; &nbsp; Edit Movie</a>
+>>>>>>> 5b17cc77666d1b3eb657cc5fb0c03d2cad2e8ff0
     </li>
     {{/each}}
   </ol>
 </section>
 {{/if}}
 
+<<<<<<< HEAD
 <script src="/javascript/add-movie.js"></script>
+=======
+<script src="/javascript/add-movie.js"></script> 
+>>>>>>> 5b17cc77666d1b3eb657cc5fb0c03d2cad2e8ff0
