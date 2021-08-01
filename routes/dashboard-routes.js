@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Movies, User } = require('../models');
-const withAuth = require('../utils/auth')
+const withAuth = require('../utils/auth');
 
-// route to render the dashboard page, only for a logged in user *** add withAuth
-router.get('/', (req, res) => {
+// route to render the dashboard page, only for a logged in user
+router.get('/', withAuth, (req, res) => {
     Movies.findAll({
       where: {
         user_id: req.session.user_id
@@ -33,8 +33,8 @@ router.get('/', (req, res) => {
       });
   });
 
-// route to edit a movie *** withAuth
-router.get('/edit/:id', (req, res) => {
+// route to edit a movie
+router.get('/edit/:id', withAuth, (req, res) => {
   Movies.findOne({
     where: {
       id: req.params.id
@@ -67,29 +67,5 @@ router.get('/edit/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
-// route to edit the logged in user *** add withAuth
-router.get('/edituser', (req, res) => {
-  User.findOne({
-    attributes: { exclude: ['password'] },
-    where: {
-      id: req.session.user_id
-    }
-  })
-    .then(dbUserData => {
-      if (!dbUserData) {
-        // if no user is found, return an error
-        res.status(404).json({ message: 'No user found with this id' });
-        return;
-      }
-      // otherwise, return the data for the requested user
-      const user = dbUserData.get({ plain: true });
-      res.render('edit-user', {user, loggedIn: true});
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    })
-  });
 
 module.exports = router;

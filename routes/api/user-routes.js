@@ -84,6 +84,7 @@ router.post('/login', (req, res) => {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
     }
+
     // otherwise, save the session, and return the user object and a success message
     req.session.save(() => {
       // declare session variables
@@ -92,12 +93,12 @@ router.post('/login', (req, res) => {
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });
-      });
+    });
   });  
 });
 
-// POST /api/users/logout -- log out an existing user *** add withAuth
-router.post('/logout', (req, res) => {
+// POST /api/users/logout -- log out an existing user
+router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {
         // 204 status is that a request has succeeded, but client does not need to go to a different page

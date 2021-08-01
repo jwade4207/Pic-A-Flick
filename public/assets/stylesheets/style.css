@@ -5,16 +5,16 @@
 }
 
 body {
-    background-color: black;
-    color: grey;
+    
 }
 
 /* nav bar */
 
 header {
-    padding: 10px;
+    padding: 20px;
     background-color: rgba(0, 0, 0);
-    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     position: sticky;
     position: -webkit-sticky;
@@ -28,7 +28,6 @@ header {
 header h1 {
     font-weight: bold;
     margin: 0;
-    padding: 10px;
     font-size: 36px;
     color: rgba(100, 60, 160);
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -45,8 +44,7 @@ header a:hover {
 }
 
 header nav {
-    display: flex;
-    justify-content: space-between;
+
 }
 
 header nav ul {
@@ -69,27 +67,6 @@ header nav ul li a:hover {
     color: white;
     border-bottom: 3px solid rgba(100, 60, 160);
     text-shadow: none;
-}
-
-.btn, .btn-no-style {
-    text-decoration: none;
-    color: rgba(100, 60, 160);
-    background-color: transparent;
-    border: none;
-    padding: 10px 15px;
-    font-weight: lighter;
-    font-size: 1.55vw;
-    text-shadow: 0 0 10px rgb(0 0 0 / 50%);
-}
-
-.btn:hover, .btn-no-style:hover {
-        text-decoration: none;
-        color: white;
-}
-
-button {
-    padding: 2px;
-    background-color: grey;
 }
 
 /* hero */
@@ -129,43 +106,14 @@ main section div a:hover {
     background-color: rgba(0, 0, 0);
 }
 
-.login-form, .signup-form {
-    margin: 20px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-evenly;
-}
+/* genre pages */
 
-.row {
-    margin: 20px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-around;
-}
+.movie-titles {
+    color:rgba(100, 60, 160);
+    border-bottom: none;
+};
 
-.column {
-    margin: 10px;
-    padding: 10px;
+.movie-descriptions {
+    color: white;
+    border-bottom: none;
 }
-
-.movie-list {
-    margin: 10px;
-    padding: 10px;
-    list-style: none;
-}
-
-.card {
-    background-color: black;
-}
-
-input {
-    background-color: lightgray;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    padding: 1%;
-    font-size: 110%;
-    border-top: 2px inset white;
-  }

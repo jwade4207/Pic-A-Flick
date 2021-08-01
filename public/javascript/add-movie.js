@@ -3,7 +3,7 @@ async function newFormHandler(event) {
 
     // get the movie title and genre from the form
     const title = document.querySelector('input[name="movie-title"]').value;
-    const genre_text = document.querySelector('textarea[name="genre-text"]').value;
+    const genre_name = document.querySelector('textarea[name="genre-name"]').value;
 
     const response = await fetch(`/api/movies`, {
       method: 'POST',
@@ -22,6 +22,6 @@ async function newFormHandler(event) {
       alert(response.statusText);
     }
   }
-
+  
   // event Listener for the new post submit button
-  document.querySelector('.new-movie-form').addEventListener('submit', newFormHandler); 
+  document.querySelector('.new-movie-form').addEventListener('submit', newFormHandler);

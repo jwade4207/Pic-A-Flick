@@ -6,6 +6,69 @@ const { Movies, User } = require('../models');
 router.get('/', (req, res) => {
     Movies.findAll({
         attributes: [
+            'id',
+            'title',
+            'genre_name',
+            'user_id'
+          ],
+        // order: [[ 'created_at', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username'],
+                // loggedIn: req.session.loggedIn = true
+            }
+        ]
+    })
+        // render the movies
+        .then(dbMoviesData => {
+            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+            // pass the movies into the homepage template
+            res.render('homepage', {
+              movies,
+              loggedIn: req.session.loggedIn
+            });
+          })
+          .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+          });
+});
+
+  // render comedy page
+router.get('/comedy', (req, res) => {
+  Movies.findAll({
+      attributes: [
+          'id',
+          'title',
+          'genre_name',
+          'user_id'
+        ],
+      // order: [[ 'created_at', 'DESC']],
+      include: [
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+  })
+      // render the movies
+      .then(dbMoviesData => {
+          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+          // pass the movies into the homepage template
+          res.render('comedy')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+  // render guiltyPleasures page
+  router.get('/guiltyPleasures', (req, res) => {
+    Movies.findAll({
+        attributes: [
+            'id',
             'title',
             'genre_name',
             'user_id'
@@ -20,20 +83,104 @@ router.get('/', (req, res) => {
     })
         // render the movies
         .then(dbMoviesData => {
-            // create an array for the movies, using the get method to trim extra sequelize object data out
             const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
-            res.render('homepage', {
-              movies,
-              loggedIn: req.session.loggedIn
-            });
+            // pass the movies into the homepage template
+            res.render('guiltyPleasures')
           })
           .catch(err => {
               console.log(err);
               res.status(500).json(err);
           });
-      });
+  });
 
-       // render the single movie page
+    // render horror page
+router.get('/horror', (req, res) => {
+  Movies.findAll({
+      attributes: [
+          'id',
+          'title',
+          'genre_name',
+          'user_id'
+        ],
+      // order: [[ 'created_at', 'DESC']],
+      include: [
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+  })
+      // render the movies
+      .then(dbMoviesData => {
+          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+          // pass the movies into the homepage template
+          res.render('horror')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+  // render sciFi page
+  router.get('/sciFi', (req, res) => {
+    Movies.findAll({
+        attributes: [
+            'id',
+            'title',
+            'genre_name',
+            'user_id'
+          ],
+        // order: [[ 'created_at', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        // render the movies
+        .then(dbMoviesData => {
+            const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+            // pass the movies into the homepage template
+            res.render('sciFi')
+          })
+          .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+          });
+  });
+
+    // render superHero page
+router.get('/superHero', (req, res) => {
+  Movies.findAll({
+      attributes: [
+          'id',
+          'title',
+          'genre_name',
+          'user_id'
+        ],
+      // order: [[ 'created_at', 'DESC']],
+      include: [
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+  })
+      // render the movies
+      .then(dbMoviesData => {
+          const movies = dbMoviesData.map(movies => movies.get({ plain: true }));
+          // pass the movies into the homepage template
+          res.render('superHero')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+  // render the single movie page
 router.get('/movie/:id', (req, res) => {
   Movies.findOne({
     where: {
@@ -71,24 +218,24 @@ router.get('/movie/:id', (req, res) => {
     });
 });
 
-      // render the login page, redirect to homepage if user is logged in
-router.get('/login', (req, res) => {
+  // render the login page, redirect to homepage if user is logged in
+  router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+      
+        res.render('login');
+      });
+
+  // render the sign up page
+  router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
       return;
     }
   
-    res.render('login');
+    res.render('signup');
   });
-
-  // render the sign up page
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('signup');
-});
 
     module.exports = router;
