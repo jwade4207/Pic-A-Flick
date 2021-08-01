@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Movies } = require('../../models');
+const { User, Movies, Vote } = require('../../models');
 const session = require('express-session');
 const withAuth = require('../../utils/auth');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -28,6 +28,12 @@ router.get('/:id', (req, res) => {
             {
                 model: Movies,
                 attributes: ['id', 'title', 'genre_name', 'user_id']
+            },
+            {
+              model: Movies,
+              attributes: ['title'],
+              through: Vote,
+              as: 'voted_movies'
             }
         ]
     })
@@ -48,6 +54,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
       username: req.body.username,
+      email: req.body.email,
       password: req.body.password
     })
       // send the user data back to the client as confirmation and save the session
@@ -66,35 +73,38 @@ router.post('/', (req, res) => {
       });
   });
 
-router.post('/login', (req, res) => {
-    //Query operation
+// POST /api/users/login -- login route for a user
+router.post('/login',  (req, res) => {
   User.findOne({
-    where: {
-      username: req.body.username
-    }
+      where: {
+      email: req.body.email
+      }
   }).then(dbUserData => {
-    if (!dbUserData) {
-      res.status(400).json({ message: 'No user with that username!' });
+      // if the email is not found, return an error
+      if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email!' });
       return;
-    }
-
-    // verify user
-    const validPassword = dbUserData.checkPassword(req.body.password);
-    if (!validPassword) {
-        res.status(400).json({ message: 'Incorrect password!' });
-        return;
-    }
-    // otherwise, save the session, and return the user object and a success message
-    req.session.save(() => {
-      // declare session variables
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.loggedIn = true;
-
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
-    });
-});  
+      }
+      // otherwise, verify the user.
+      // call the instance method as defined in the User model
+      const validPassword = dbUserData.checkPassword(req.body.password);
+      // if the password is invalid (method returns false), return an error
+      if (!validPassword) {
+          res.status(400).json({ message: 'Incorrect password!' });
+          return;
+      }
+      // otherwise, save the session, and return the user object and a success message
+      req.session.save(() => {
+        // declare session variables
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+  
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+      });
+  });  
 });
+
 // POST /api/users/logout -- log out an existing user
 router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {

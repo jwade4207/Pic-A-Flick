@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
+// const scrypt = require('scrypt');
 const sequelize = require('../config/connection');
 
 // create our User model
@@ -30,6 +31,17 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        // define an email column
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            // cannot be any duplicate email values
+            unique: true,
+            validate: {
+                isEmail: true
+            }
+        },
+        // define a password column
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -52,7 +64,6 @@ User.init(
                 return updatedUserData;
             }
         },
-        // TABLE CONFIGURATION OPTIONS GO HERE (https://sequelize.org/v5/manual/models-definition.html#configuration))
 
         // pass in our imported sequelize connection (the direct connection to our database)
         sequelize,
