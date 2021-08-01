@@ -3,7 +3,7 @@ async function newFormHandler(event) {
 
     // get the movie title and genre from the form
     const title = document.querySelector('input[name="movie-title"]').value;
-    const genre_name = document.querySelector('textarea[name="genre-name"]').value;
+    const genre_name = document.querySelector('input[name="genre-name"]').value;
 
     const response = await fetch(`/api/movies`, {
       method: 'POST',
