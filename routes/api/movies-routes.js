@@ -63,12 +63,13 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create a movie **ADD withAuth
+// create a movie
 router.post('/', withAuth, (req, res) => {
     Movies.create({
         title: req.body.title,
-        genre_name: req.body.genre_name
-    })
+        genre_name: req.body.genre_name,
+        user_id: req.session.user_id
+      })
         .then(dbMoviesData => res.json(dbMoviesData))
         .catch(err => {
             console.log(err);
@@ -76,7 +77,7 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
-// delete a movie **ADD withAuth
+// delete a movie
 router.delete('/:id', withAuth, (req, res) => {
     Movies.destroy({
       where: {

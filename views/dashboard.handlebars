@@ -23,14 +23,13 @@
 {{#if movies.length}}
 <section>
   <h2>Your Movies</h2>
-  <ol>
+  <ul>
     {{#each movies as |movie|}}
     <li>
       {{> movie-info movie}}
-      <a href="/dashboard/edit/{{movies.id}}" class="edit-link">Edit Movie</a>
     </li>
     {{/each}}
-  </ol>
+  </ul>
 </section>
 {{/if}}
 
