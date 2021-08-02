@@ -1,6 +1,6 @@
 const User = require('./User');
 const Movies = require('./Movies');
-const Vote = require('./Vote');
+const Vote = require('./vote');
 // const Comment = require('./Comment');
 
 // create associations
