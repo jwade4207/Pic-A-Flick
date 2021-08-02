@@ -61,4 +61,4 @@ Movies.belongsTo(User, {
 //     foreignKey: 'post_id'
 // });
 
-module.exports = { User, Movies, };
+module.exports = { User, Movies };
