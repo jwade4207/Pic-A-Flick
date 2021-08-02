@@ -13,33 +13,33 @@ Movies.belongsTo(User, {
 });
 
 // creating user/movie association through votes
-User.belongsToMany(Movies, {
-    through: Vote,
-    as: 'voted_movies',
-    foreignKey: 'user_id'
-});
+// User.belongsToMany(Movies, {
+//     through: Vote,
+//     as: 'voted_movies',
+//     foreignKey: 'user_id'
+// });
 
-Movies.belongsToMany(User, {
-    through: Vote,
-    as: 'voted_movies',
-    foreignKey: 'movie_id'
-});
+// Movies.belongsToMany(User, {
+//     through: Vote,
+//     as: 'voted_movies',
+//     foreignKey: 'movie_id'
+// });
 
-Vote.belongsTo(User, {
-    foreignKey: 'user_id'
-});
+// Vote.belongsTo(User, {
+//     foreignKey: 'user_id'
+// });
 
-Vote.belongsTo(Movies, {
-    foreignKey: 'movie_id'
-});
+// Vote.belongsTo(Movies, {
+//     foreignKey: 'movie_id'
+// });
 
-User.hasMany(Vote, {
-    foreignKey: 'user_id'
-});
+// User.hasMany(Vote, {
+//     foreignKey: 'user_id'
+// });
 
-Movies.hasMany(Vote, {
-    foreignKey: 'movie_id'
-});
+// Movies.hasMany(Vote, {
+//     foreignKey: 'movie_id'
+// });
 
 // User.belongsTo(Movies, {
 //     foreignKey: 'user_id'
@@ -61,4 +61,4 @@ Movies.hasMany(Vote, {
 //     foreignKey: 'post_id'
 // });
 
-module.exports = { User, Movies, Vote };
+module.exports = { User, Movies, };
