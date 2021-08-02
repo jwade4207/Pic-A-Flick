@@ -7,11 +7,14 @@
 A full stack application where users can create movies and vote for their favorites by genre.
 
 Deployed application: 
-https://sleepy-castle-89068.herokuapp.com/
+https://pic-a-flick345567.herokuapp.com/
 
 ## Screenshots
+### Homepage
+![Pic a Flick Homepage](./public/images/screenshots/homepage.jpg)
 
-![Pic a Flick Homepage]()
+### Dashboard
+![Pic a Flick Dashboard](./public/images/screenshots/dashboard.jpg)
 
 ## Table of Contents
   * [Installation](#installation)
@@ -27,9 +30,9 @@ Enter `npm install` in the terminal to install the necessary dependencies.
 - Enter `http://localhost:3001/` in the address bar to use application.
 
 ## Contributing
-#### Charity Rogers
-#### Jerod Wade
-#### Michael Pinkston
+*Charity Rogers* <br>
+*Jerod Wade* <br>
+*Michael Pinkston* <br>
 
 ## Questions
 If you have any questions or concerns, please contact us!
