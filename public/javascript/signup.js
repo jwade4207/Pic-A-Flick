@@ -23,9 +23,10 @@ async function signupFormHandler(event) {
         // when the fetch promise is fufilled, check the response status and convey the results
         if (response.ok) {
             document.location.replace('/dashboard');
-        } else {
-            alert(response.statusText)
-        }
+          } else {
+            let result = await response.json()
+            alert(result.message)
+          }
     }
 }
 
