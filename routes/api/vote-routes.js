@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
         });
 
 });
-//route that allows us to create a genre
+//route that allows us to create a vote
 router.get('/', (req, res) => {
     // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
    Vote.create({
