@@ -19,6 +19,7 @@ async function signupFormHandler(event) {
             }),
             headers: {'Content-Type': 'application/json'}
         });
+        console.log(response);
         // when the fetch promise is fufilled, check the response status and convey the results
         if (response.ok) {
             document.location.replace('/dashboard');

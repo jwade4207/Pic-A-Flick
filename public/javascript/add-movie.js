@@ -5,7 +5,8 @@ async function newFormHandler(event) {
     const title = document.querySelector('input[name="movie-title"]').value;
     const genre_name = document.querySelector('input[name="genre-name"]').value;
 
-    const response = await fetch(`/api/movies`, {
+    if (title && genre_name) {
+      const response = await fetch(`/api/movies`, {
       method: 'POST',
       body: JSON.stringify({
         title,
@@ -19,6 +20,7 @@ async function newFormHandler(event) {
       document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
+      }
     }
   }
   

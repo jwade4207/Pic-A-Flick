@@ -34,38 +34,38 @@ router.get('/', withAuth, (req, res) => {
   });
 
 // route to edit a movie
-router.get('/edit/:id', withAuth, (req, res) => {
-  Movies.findOne({
-    where: {
-      id: req.params.id
-    },
-    attributes: [
-      'id',
-      'title',
-      'genre_name',
-      'created_at',
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
-    .then(dbMoviesData => {
-      // if no movie by that id exists, return an error
-      if (!dbMoviesData) {
-        res.status(404).json({ message: 'No movie found with this id' });
-        return;
-      }
-      // serialize data before passing to template
-      const movie = dbMoviesData.get({ plain: true });
-      res.render('edit-movie', { movie, loggedIn: true });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.get('/edit/:id', withAuth, (req, res) => {
+//   Movies.findOne({
+//     where: {
+//       id: req.params.id
+//     },
+//     attributes: [
+//       'id',
+//       'title',
+//       'genre_name',
+//       'created_at',
+//     ],
+//     include: [
+//       {
+//         model: User,
+//         attributes: ['username']
+//       }
+//     ]
+//   })
+//     .then(dbMoviesData => {
+//       // if no movie by that id exists, return an error
+//       if (!dbMoviesData) {
+//         res.status(404).json({ message: 'No movie found with this id' });
+//         return;
+//       }
+//       // serialize data before passing to template
+//       const movie = dbMoviesData.get({ plain: true });
+//       res.render('edit-movie', { movie, loggedIn: true });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 module.exports = router;
